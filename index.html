@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Test</title>
+    </head>
+    <body>
+        <style type="text/css">
+            body {
+                margin:  0;
+                padding: 0;
+            }
+            .face {
+                position: absolute;
+                width: 600px;
+                height: 600px;
+                left: 50%;
+                top: 50%;
+                margin-left: -300px;
+                margin-top: -300px;
+            }
+            .eyes {
+                display: flex;
+                justify-content: space-between;
+            }
+            #nose {
+                margin: 0 auto;
+                width:  100px;
+                height: 200px;
+                background-color: black;
+            }
+            .eye {
+                height: 100px;
+                width: 100px;
+                background-color: black;
+            }
+            #mouth {
+                height: 50px;
+                background-color: black;
+            }
+        </style>
+
+        <div class="face">
+            <div class="eyes">
+                <div class="eye" id="eye_sx"></div>
+                <div class="eye" id="eye_dx"></div>
+            </div>
+            <div class="layer" id="nose"></div>
+            <div class="layer" id="mouth"></div>
+        </div>
+        <script>
+
+            document.addEventListener("load", makeFace())
+
+            function makeFace(){
+
+                // eyes
+                let min = 150;
+                let max = 250;
+                let size = Math.random() * (max - min) + min;
+
+                document.getElementById("eye_sx").style.width = size + "px";
+                document.getElementById("eye_dx").style.width = size + "px";
+
+                // mouth
+                let min_p = 150;
+                let max_p = 350;
+                let pad = Math.random() * (max_p - min_p) + min_p;
+
+                document.getElementById("mouth").style.margin = pad + "px 0 0 0";
+                eyebrow();
+            }
+
+            function eyebrow(){
+                let nose = document.getElementById("nose");
+
+                nose.addEventListener("mouseenter", function( event ) {
+                    eye_sx.style.transform = "rotate(20deg)"
+                    eye_dx.style.transform = "rotate(-20deg)"
+                })
+                nose.addEventListener("mouseleave", function( event ) {
+                    eye_sx.style.transform = "rotate(0deg)"
+                    eye_dx.style.transform = "rotate(0deg)"
+                })
+            }
+
+        </script>
+    </body>
+</html>
+
